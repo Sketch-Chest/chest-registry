@@ -1,0 +1,15 @@
+h1 = @package.name
+
+ul
+  /li = @package.user.avatar
+  li = @package.user.name
+  li = @package.repository
+  / li = @package.license
+  / li = @package.version
+  / li = @package.download_count
+
+/ Favorite button
+
+p = @package.description
+
+/ p = Markdown(@package.readme)
