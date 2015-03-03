@@ -16,3 +16,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# figaro
+/config/application.yml

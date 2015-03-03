@@ -5,15 +5,16 @@ ruby '2.2.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'slim-rails'
 gem 'jquery-rails'
-
-gem 'jbuilder', '~> 2.0'
 gem 'paranoia'
-gem 'sorcery'
+gem 'sorcery', github: 'NoamB/sorcery', branch: '0-9-x'
+gem 'figaro'
+gem 'email_validator'
+gem 'grape'
 
 group :production do
   gem 'pg'
@@ -22,9 +23,13 @@ end
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'rspec-rails'
-  gem 'pry-byebug'
-  gem 'web-console', '~> 2.0'
+
+  gem 'quiet_assets'
+  gem 'meta_request'
+  gem 'web-console'
   gem 'spring'
+  gem 'rspec-rails'
+  gem 'faker'
+  gem 'fabrication'
 end
 

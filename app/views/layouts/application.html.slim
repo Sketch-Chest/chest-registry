@@ -6,4 +6,25 @@ html
     = javascript_include_tag 'application'
     = csrf_meta_tags
   body
-    = yield
+    header
+      div
+        p.notice = flash[:notice]
+        p.alert  = flash[:alert]
+      div style="text-align: right;"
+        ul
+          - if logged_in?
+            p Currently logged in as: #{current_user.email}
+
+            - if current_user.has_linked_github?
+              li = link_to 'Unlink your Github account', delete_oauth_path('github'), method: :delete
+            - else
+              li = link_to 'Link your GitHub account', auth_at_provider_path(provider: :github)
+
+            li = link_to 'Logout', logout_path
+          - else
+            li = link_to 'Create Account', new_user_path
+            li = link_to 'Login', login_path
+            li = link_to 'Login using Github', auth_at_provider_path(provider: :github)
+
+    main
+      = yield
