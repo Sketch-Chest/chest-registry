@@ -4,8 +4,9 @@ class CreatePackages < ActiveRecord::Migration
       t.string :name, null: false
       t.references :user, index: true
       t.text :description
-      t.string :repository
-
+      t.text :readme
+      t.string :tarball_url
+      t.datetime :deleted_at, default: nil
       t.timestamps null: false
     end
     add_index :packages, :name, unique: true

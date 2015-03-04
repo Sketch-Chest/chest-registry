@@ -11,21 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303134819) do
-
-  create_table "authentications", force: :cascade do |t|
-    t.integer  "user_id",    null: false
-    t.string   "provider",   null: false
-    t.string   "uid",        null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20150303134818) do
 
   create_table "packages", force: :cascade do |t|
     t.string   "name",        null: false
     t.integer  "user_id"
     t.text     "description"
-    t.string   "repository"
+    t.text     "readme"
+    t.string   "tarball_url"
+    t.datetime "deleted_at"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -38,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150303134819) do
     t.string   "crypted_password"
     t.string   "salt"
     t.string   "name",             null: false
+    t.string   "token"
     t.datetime "deleted_at"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false

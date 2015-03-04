@@ -1,0 +1,78 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import bourbon
+@import reset
+
+body
+  font-family: "Lato", sans-serif
+
+main
+  background-color: #F7F3F3
+  padding: 50px 100px
+
+h1
+  font-size: 48px
+  line-height: 1.2em
+
+h2
+  font-size: 20px
+  line-height: 1.2em
+
+p
+  line-height: 1.333em
+  padding: 5px 0
+
+header
+  height: 50px
+  background-color: #fff
+
+  display: flex
+  flex-flow: row nowrap
+  justify-content: flex-start
+  align-items: center
+  padding: 0 100px
+
+  .chest-logo
+    @include hide-text
+    width: 88px
+    height: 31px
+    background: image-url('chest-logo.svg') no-repeat
+
+  nav
+    flex-grow: 1
+
+    display: flex
+    flex-flow: row nowrap
+
+    .nav-link
+      margin-left: 30px
+
+      a
+        color: #888888
+        text-decoration: none
+        font-weight: 500
+        font-size: 14px
+
+        &:hover, &:active
+          color: #000
+
+  nav.nav-global
+    justify-content: flex-start
+
+  nav.nav-user
+    justify-content: flex-end
+

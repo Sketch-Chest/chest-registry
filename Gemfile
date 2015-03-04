@@ -1,9 +1,7 @@
 source 'https://rubygems.org'
 
-# ruby '2.2.1'
-ruby '2.2.0'
+ruby '2.2.1'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 gem 'sass-rails'
 gem 'uglifier'
@@ -12,9 +10,9 @@ gem 'slim-rails'
 gem 'jquery-rails'
 gem 'paranoia'
 gem 'sorcery', github: 'NoamB/sorcery', branch: '0-9-x'
-gem 'figaro'
 gem 'email_validator'
-gem 'grape'
+gem 'jbuilder'
+gem 'bourbon'
 
 group :production do
   gem 'pg'
@@ -23,7 +21,8 @@ end
 
 group :development, :test do
   gem 'sqlite3'
-
+  gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'quiet_assets'
   gem 'meta_request'
   gem 'web-console'
@@ -32,4 +31,3 @@ group :development, :test do
   gem 'faker'
   gem 'fabrication'
 end
-

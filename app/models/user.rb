@@ -1,13 +1,11 @@
 class User < ActiveRecord::Base
+  include Tokenable
+
   acts_as_paranoid
-  authenticates_with_sorcery! do |config|
-    config.authentications_class = Authentication
-  end
 
-  has_many :authentications, dependent: :destroy
+  authenticates_with_sorcery!
+
   has_many :packages
-
-  accepts_nested_attributes_for :authentications
 
   # Validation
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 },
@@ -16,7 +14,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true, confirmation: true, length: { minimum: 3 }
   validates :password_confirmation, presence: true
 
-  def has_linked_github?
-    authentications.where(provider: 'github').present?
+  # use :name as primary_key instead of :id
+  def to_param
+    name
   end
 end

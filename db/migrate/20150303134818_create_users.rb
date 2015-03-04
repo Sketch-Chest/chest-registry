@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :crypted_password
       t.string :salt
       t.string :name, null: false # Must be lowercase and URL-safe characters
+      t.string :token
       t.datetime :deleted_at
       t.timestamps null: false
     end

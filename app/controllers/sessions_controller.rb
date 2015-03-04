@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
   def create
     if @user = login(params[:email], params[:password])
-      redirect_back_or_to root_path, notice: 'You have been logged in successfully.'
+      redirect_back_or_to root_path
     else
       flash[:alert] = 'There was a problem with your email address and/or password. Please try again.'
       render :new
@@ -24,6 +24,6 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to root_path, notice: 'You have been logged out.'
+    redirect_to root_path
   end
 end
