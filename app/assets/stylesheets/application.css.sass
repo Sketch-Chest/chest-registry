@@ -1,15 +1,4 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
  *= require_tree .
  *= require_self
  */
@@ -46,33 +35,36 @@ header
   align-items: center
   padding: 0 100px
 
+
   .chest-logo
     @include hide-text
     width: 88px
     height: 31px
+    display: block
     background: image-url('chest-logo.svg') no-repeat
 
   nav
     flex-grow: 1
-
     display: flex
     flex-flow: row nowrap
+    align-items: center
 
-    .nav-link
+    &.nav-global
+      justify-content: flex-start
+
+    &.nav-user
+      justify-content: flex-end
+
+    a
+      color: #888888
+      text-decoration: none
+      font-weight: 500
+      font-size: 14px
+
+      &:hover, &:active
+        color: #000
+
       margin-left: 30px
-
-      a
-        color: #888888
-        text-decoration: none
-        font-weight: 500
-        font-size: 14px
-
-        &:hover, &:active
-          color: #000
-
-  nav.nav-global
-    justify-content: flex-start
-
-  nav.nav-user
-    justify-content: flex-end
+      &:first-child
+        margin-left: 0
 

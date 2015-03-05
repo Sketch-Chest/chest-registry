@@ -14,19 +14,19 @@ html
         p.alert  = flash[:alert]
 
     header
-      h1.chest-logo Chest
       nav.nav-global
-        .nav-link = link_to 'Browse', packages_path
-        .nav-link = link_to 'Document', 'https://github.com/uetchy/chest.pm'
-        .nav-link = link_to 'GitHub', 'https://github.com/uetchy/chest.pm', target: '_blank'
+        = link_to 'Chest', root_path, class: 'chest-logo'
+        = link_to 'Browse', packages_path
+        = link_to 'Document', 'https://github.com/uetchy/chest.pm'
+        = link_to 'GitHub', 'https://github.com/uetchy/chest.pm', target: '_blank'
 
       nav.nav-user
         - if logged_in?
-          .nav-link = current_user.email
-          .nav-link = link_to 'Logout', logout_path
+          = current_user.email
+          = link_to 'Logout', logout_path
         - else
-          .nav-link = link_to 'Create Account', new_user_path
-          .nav-link = link_to 'Login', login_path
+          = link_to 'Create Account', new_user_path
+          = link_to 'Login', login_path
 
     main
       = yield
