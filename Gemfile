@@ -7,18 +7,16 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'slim-rails'
-# gem 'jquery-rails'
 gem 'paranoia'
-gem 'sorcery', github: 'NoamB/sorcery', branch: '0-9-x'
+gem 'sorcery', github: 'NoamB/sorcery'
 gem 'email_validator'
 gem 'jbuilder'
 gem 'bourbon'
 gem 'autoprefixer-rails'
-
-group :production do
-  gem 'pg'
-  gem 'rails_12factor'
-end
+gem 'paperclip'
+gem 'kramdown'
+gem 'evil_icons'
+gem 'semantic'
 
 group :development, :test do
   gem 'sqlite3'
@@ -31,4 +29,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'faker'
   gem 'fabrication'
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
 end

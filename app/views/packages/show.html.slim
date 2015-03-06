@@ -1,15 +1,24 @@
-h1 = @package.name
+.package-meta
+  h1.package-name = @package.name
+  h2.package-description = @package.description
 
-ul
-  /li = @package.user.avatar
-  li = @package.user.name
-  li = @package.repository
-  / li = @package.license
-  / li = @package.version
-  / li = @package.download_count
+  .package-instruction
+    span $ chest install #{@package.name}
+
+  .package-detail
+    ul
+      li by #{@package.user.name}
+      li latest (#{@package.versions.last.version})
+      li donwload #{@package.download_count}
+
+
+  / ul
+  /   li = @package.user.name
+  /   li = @package.repository
+  /   li = @package.license || "No license indicated"
+    / li = @package.version
+    / li = @package.download_count || 0
 
 / Favorite button
-
-p = @package.description
-
-/ p = Markdown(@package.readme)
+.package-readme
+  == @package.readme_html

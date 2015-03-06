@@ -4,9 +4,10 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email, null: false
       t.string :crypted_password
       t.string :salt
-      t.string :name, null: false # Must be lowercase and URL-safe characters
+      t.string :name, null: false
       t.string :token
       t.datetime :deleted_at
+
       t.timestamps null: false
     end
 

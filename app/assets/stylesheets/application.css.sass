@@ -1,4 +1,5 @@
 /*
+ *= require evil-icons
  *= require_tree .
  *= require_self
  */
@@ -11,19 +12,18 @@ body
 
 main
   background-color: #F7F3F3
-  padding: 50px 100px
 
 h1
   font-size: 48px
-  line-height: 1.2em
 
 h2
   font-size: 20px
-  line-height: 1.2em
 
-p
-  line-height: 1.333em
-  padding: 5px 0
+p, li, h2, h3, h4, h5, h6
+  line-height: 1.6em
+
+ol, ul
+  list-style-position: inside
 
 header
   height: 50px
@@ -34,7 +34,6 @@ header
   justify-content: flex-start
   align-items: center
   padding: 0 100px
-
 
   .chest-logo
     @include hide-text

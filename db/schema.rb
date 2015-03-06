@@ -11,17 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303134818) do
+ActiveRecord::Schema.define(version: 20150307134818) do
 
   create_table "packages", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.integer  "user_id"
+    t.string   "name",                       null: false
+    t.integer  "user_id",                    null: false
     t.text     "description"
     t.text     "readme"
-    t.string   "tarball_url"
+    t.text     "readme_html"
+    t.string   "homepage"
+    t.string   "repository"
+    t.string   "license"
+    t.integer  "download_count", default: 0
     t.datetime "deleted_at"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "packages", ["name"], name: "index_packages_on_name", unique: true
@@ -39,5 +43,19 @@ ActiveRecord::Schema.define(version: 20150303134818) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "version",              null: false
+    t.string   "archive_file_name",    null: false
+    t.string   "archive_content_type", null: false
+    t.integer  "archive_file_size",    null: false
+    t.datetime "archive_updated_at",   null: false
+    t.integer  "package_id",           null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "versions", ["package_id"], name: "index_versions_on_package_id"
 
 end

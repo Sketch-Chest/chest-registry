@@ -2,11 +2,16 @@ class CreatePackages < ActiveRecord::Migration
   def change
     create_table :packages do |t|
       t.string :name, null: false
-      t.references :user, index: true
+      t.references :user, null: false, index: true
       t.text :description
       t.text :readme
-      t.string :tarball_url
-      t.datetime :deleted_at, default: nil
+      t.text :readme_html
+      t.string :homepage
+      t.string :repository
+      t.string :license
+      t.integer :download_count, default: 0
+      t.datetime :deleted_at
+
       t.timestamps null: false
     end
     add_index :packages, :name, unique: true
