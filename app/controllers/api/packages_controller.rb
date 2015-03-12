@@ -1,16 +1,20 @@
-class Api::PackagesController < ApplicationController
+class API::PackagesController < ApplicationController
   skip_before_filter :require_login
   protect_from_forgery with: :null_session
   skip_before_filter :verify_authenticity_token
 
-  before_action :set_package, only: [:show, :destroy]
+  before_action :set_package, only: [:show, :download, :destroy]
 
   # GET /api/packages/:name
   def show
-    puts "="*30
     puts request.url
     puts request.body.read
-    puts "="*30
+  end
+
+  def download
+    required_version = package_params[:version]
+    @version = required_version == 'latest' ? @package.versions.last : @package.versions.find_by(version: required_version)
+    send_file @version.archive.path, type: @version.archive_content_type, disposition: 'inline'
   end
 
   # POST /api/packages
@@ -23,9 +27,12 @@ class Api::PackagesController < ApplicationController
         description: metadata['description'],
         readme: metadata['readme'],
         homepage: metadata['homepage'],
-        repository: metadata['repository'],
+        keywords: metadata['keywords'].join(','),
+        repository_type: metadata['repository']['type'],
+        repository_url: metadata['repository']['url'],
+        authors: metadata['authors'], #array
         user: @user,
-        )
+      )
 
       if @package.save
         @package.versions.create(
@@ -58,6 +65,6 @@ class Api::PackagesController < ApplicationController
   end
 
   def package_params
-    params.permit(:token, :metadata, :archive)
+    params.permit(:token, :metadata, :archive, :version)
   end
 end

@@ -1,15 +1,16 @@
 .package-meta
-  h1.package-name = @package.name
-  h2.package-description = @package.description
+  .package-basics
+    h1.package-name = @package.name
+    h2.package-description = @package.description
 
-  .package-instruction
-    span $ chest install #{@package.name}
+    .package-instruction
+      span $ chest install #{@package.name}
 
-  .package-detail
+  .package-details
     ul
-      li by #{@package.user.name}
-      li latest (#{@package.versions.last.version})
-      li donwload #{@package.download_count}
+      li #{evil_icon 'ei-user'} #{link_to @package.user.name, @package.user}
+      li #{evil_icon 'ei-archive'} #{@package.versions.last.version}
+      li #{evil_icon 'ei-chart'} #{@package.download_count}
 
 
   / ul

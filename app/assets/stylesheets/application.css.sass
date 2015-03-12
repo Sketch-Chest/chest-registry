@@ -43,7 +43,7 @@ header
     background: image-url('chest-logo.svg') no-repeat
 
   nav
-    flex-grow: 1
+    height: 100%
     display: flex
     flex-flow: row nowrap
     align-items: center
@@ -51,17 +51,40 @@ header
     &.nav-global
       justify-content: flex-start
 
+    &.nav-search
+      margin: 0 50px
+      padding: 0 10px
+      flex-grow: 1
+      border: 1px solid #ededed
+      border-top: none
+      border-bottom: none
+      display: flex
+      flex-flow: row nowrap
+
+      .icon
+        width: 30px
+        height: 30px
+        fill: #7E7E7E
+
+      form, input[type=text]
+        width: 100%
+
+      input[type=text]
+        border: 0
+        outline: none
+        font-size: 25px
+
     &.nav-user
       justify-content: flex-end
 
     a
-      color: #888888
+      color: #000
       text-decoration: none
       font-weight: 500
       font-size: 14px
 
       &:hover, &:active
-        color: #000
+        color: #888888
 
       margin-left: 30px
       &:first-child

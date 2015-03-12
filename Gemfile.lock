@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/NoamB/sorcery.git
-  revision: 12d57bf8c10956a3ec2a2dd0985fb01731f733f2
+  revision: bbc745672b4ab4ea04293dca60350dcf64b92f9a
   specs:
     sorcery (0.9.0)
       bcrypt (~> 3.1)
@@ -81,7 +81,7 @@ GEM
       activemodel
     erubis (2.7.0)
     evil_icons (1.7.2)
-    execjs (2.3.0)
+    execjs (2.4.0)
     fabrication (2.12.2)
     faker (1.4.3)
       i18n (~> 0.5)
@@ -91,11 +91,11 @@ GEM
       activesupport (>= 4.1.0)
     hike (1.2.3)
     i18n (0.7.0)
-    jbuilder (2.2.9)
+    jbuilder (2.2.11)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     json (1.8.2)
-    jwt (1.3.0)
+    jwt (1.4.0)
     kramdown (1.6.0)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
@@ -162,7 +162,7 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.1)
+    rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
@@ -200,7 +200,7 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
       tilt (~> 1.1)
     semantic (1.4.0)
-    slim (3.0.2)
+    slim (3.0.3)
       temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
     slim-rails (3.0.1)
@@ -223,14 +223,14 @@ GEM
     sqlite3 (1.3.10)
     temple (0.7.5)
     thor (0.19.1)
-    thread_safe (0.3.4)
+    thread_safe (0.3.5)
     tilt (1.4.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.1)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    web-console (2.1.0)
+    web-console (2.1.1)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
       railties (>= 4.0)

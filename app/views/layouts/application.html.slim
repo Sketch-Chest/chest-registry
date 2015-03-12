@@ -21,6 +21,11 @@ html
         = link_to 'Document', 'https://github.com/uetchy/chest.pm'
         = link_to 'GitHub', 'https://github.com/uetchy/chest.pm', target: '_blank'
 
+      nav.nav-search
+        = evil_icon 'ei-search'
+        = form_tag do
+          = text_field_tag 'test'
+
       nav.nav-user
         - if logged_in?
           = current_user.email

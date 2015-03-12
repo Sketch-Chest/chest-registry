@@ -1,19 +1,36 @@
 .package-meta
   padding: 50px 100px
 
-  .package-description
-    color: #837B7B
+  display: flex
+  flex-flow: row
+  justify-content: flex-start
 
-  .package-instruction
-    display: inline-block
-    margin-top: 20px
-    padding: 14px 27px
-    cursor: pointer
-    font-size: 20px
-    font-weight: 300
-    color: #FD5745
-    border: 1px solid #FD5745
-    border-radius: 3px
+  .package-basics, .package-details
+    flex-grow: 1
+
+  .package-basics
+    .package-description
+      color: #837B7B
+
+    .package-instruction
+      display: inline-block
+      margin-top: 20px
+      padding: 14px 27px
+      cursor: pointer
+      font-size: 20px
+      font-weight: 300
+      color: #FD5745
+      border: 1px solid #FD5745
+      border-radius: 3px
+
+  .package-details
+    ul
+      list-style: none
+
+      li
+        display: flex
+        flex-flow: row nowrap
+        align-items: center
 
 .package-readme
   padding: 50px 100px
@@ -26,4 +43,4 @@
     margin: 20px 0
 
   img
-    width: 100%
+    // width: 100%

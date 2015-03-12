@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get  '/logout' => 'sessions#destroy', as: 'logout'
 
   namespace :api do
-    resources :packages, only: [:show, :create, :update, :destroy]
+    resources :packages, only: [:show, :create, :update, :destroy] do
+      member do
+        get :download
+      end
+    end
   end
 
   root 'packages#index'
