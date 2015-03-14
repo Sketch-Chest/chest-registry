@@ -4,7 +4,7 @@ class CreateVersions < ActiveRecord::Migration
       t.string :version, null: false
       t.attachment :archive, null: false
       t.references :package, null: false, index: true
-      t.datetime :deleted_at
+      t.datetime :deleted_at # paranoia
 
       t.timestamps null: false
     end

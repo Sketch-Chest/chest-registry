@@ -8,6 +8,7 @@ html
 
   body
     = evil_icons_sprite
+
     .notification
       - if flash[:notice]
         p.notice = flash[:notice]
@@ -27,12 +28,12 @@ html
           = text_field_tag 'test'
 
       nav.nav-user
-        - if logged_in?
-          = current_user.email
-          = link_to 'Logout', logout_path
+        - if user_signed_in?
+          = current_user.name
+          = link_to 'Logout', destroy_user_session_path, method: :delete
         - else
-          = link_to 'Create Account', new_user_path
-          = link_to 'Login', login_path
+          = link_to 'Create Account', new_user_registration_path
+          = link_to 'Login', new_user_session_path
 
     main
       = yield

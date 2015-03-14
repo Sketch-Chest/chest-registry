@@ -1,12 +1,3 @@
-GIT
-  remote: git://github.com/NoamB/sorcery.git
-  revision: bbc745672b4ab4ea04293dca60350dcf64b92f9a
-  specs:
-    sorcery (0.9.0)
-      bcrypt (~> 3.1)
-      oauth (~> 0.4, >= 0.4.4)
-      oauth2 (>= 0.8.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -99,13 +90,14 @@ GEM
       multipart-post (>= 1.2, < 3)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    hashie (3.4.0)
     hike (1.2.3)
     i18n (0.7.0)
     jbuilder (2.2.11)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     json (1.8.2)
-    jwt (1.4.0)
+    jwt (1.4.1)
     kramdown (1.6.0)
     libv8 (3.16.14.7)
     loofah (2.0.1)
@@ -125,13 +117,23 @@ GEM
     multipart-post (2.0.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
-    oauth (0.4.7)
     oauth2 (1.0.0)
       faraday (>= 0.8, < 0.10)
       jwt (~> 1.0)
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
+      rack (~> 1.0)
+    omniauth-github (1.1.2)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
+    omniauth-oauth2 (1.2.0)
+      faraday (>= 0.8, < 0.10)
+      multi_json (~> 1.3)
+      oauth2 (~> 1.0)
+      omniauth (~> 1.2)
     orm_adapter (0.5.0)
     paperclip (4.2.1)
       activemodel (>= 3.0.0)
@@ -272,6 +274,7 @@ DEPENDENCIES
   jbuilder
   kramdown
   meta_request
+  omniauth-github
   paperclip
   paranoia
   pg
@@ -284,7 +287,6 @@ DEPENDENCIES
   sass-rails
   semantic
   slim-rails
-  sorcery!
   spring
   sqlite3
   therubyracer

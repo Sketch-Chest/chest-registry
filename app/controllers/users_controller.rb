@@ -1,8 +1,6 @@
-# https://github.com/NoamB/sorcery/wiki/Simple-Password-Authentication
-
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  skip_before_filter :require_login, only: [:new, :create, :show]
+  skip_before_action :authenticate_user!, only: [:new, :create, :show]
 
   # GET /users/1
   # GET /users/1.json
