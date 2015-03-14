@@ -11,6 +11,7 @@ class API::PackagesController < ApplicationController
     puts request.body.read
   end
 
+  # GEt /api/packages/:name/versions/latest
   def download
     required_version = package_params[:version]
     @version = required_version == 'latest' ? @package.versions.last : @package.versions.find_by(version: required_version)

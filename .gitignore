@@ -17,5 +17,5 @@
 !/log/.keep
 /tmp
 
-# figaro
-/config/application.yml
+# dotenv
+.env

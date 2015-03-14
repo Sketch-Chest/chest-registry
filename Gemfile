@@ -17,15 +17,17 @@ gem 'paperclip'
 gem 'kramdown'
 gem 'evil_icons'
 gem 'semantic'
+gem 'dotenv-rails'
+gem 'devise'
 
 group :development, :test do
   gem 'sqlite3'
   gem 'pry-rails'
   gem 'pry-byebug'
+  gem 'spring'
   gem 'quiet_assets'
   gem 'meta_request'
   gem 'web-console'
-  gem 'spring'
   gem 'rspec-rails'
   gem 'faker'
   gem 'fabrication'
@@ -34,4 +36,5 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+  gem 'therubyracer', platforms: :ruby
 end
