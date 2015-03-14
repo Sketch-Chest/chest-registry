@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }
 
   resources :users, except: [:index]
   resources :packages, only: [:index, :show]
-
-  # get  '/login'  => 'sessions#new', as: 'login'
-  # post '/login'  => 'sessions#create'
-  # get  '/logout' => 'sessions#destroy', as: 'logout'
 
   namespace :api do
     resources :packages, only: [:show, :create, :update, :destroy] do

@@ -17,4 +17,23 @@ class User < ActiveRecord::Base
   def to_param
     name
   end
+
+  # Use for authenticate with GitHub
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.name = auth.info.name
+    end
+  end
+
+  # Use for registration after authenticate with GitHub
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session['devise.github_data']
+        user.email = data['info']['email'] if user.email.blank?
+        user.name  = data['info']['nickname'] if user.name.blank?
+      end
+    end
+  end
 end

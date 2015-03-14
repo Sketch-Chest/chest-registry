@@ -1,5 +1,4 @@
 class PackagesController < ApplicationController
-  skip_before_action :authenticate_user!
   before_action :set_package, only: [:show]
 
   # GET /
