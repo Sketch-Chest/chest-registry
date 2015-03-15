@@ -29,11 +29,11 @@ html
 
       nav.nav-user
         - if user_signed_in?
-          = current_user.name
+          = link_to current_user.name, current_user
           = link_to 'Logout', destroy_user_session_path, method: :delete
         - else
           = link_to 'Create Account', new_user_registration_path
-          = link_to 'Sign up with Github', user_omniauth_authorize_path(:github)
+          = link_to 'Sign in with Github', user_omniauth_authorize_path(:github)
           = link_to 'Login', new_user_session_path
 
     main

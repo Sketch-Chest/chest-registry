@@ -1,3 +1,6 @@
 h1 = @user.name
 
 / List users' published plugins
+- @user.packages.each do |package|
+  h2 = package.name
+  p = package.description

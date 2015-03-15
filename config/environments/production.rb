@@ -79,9 +79,11 @@ Rails.application.configure do
 
   config.paperclip_defaults = {
     storage: :s3,
-    s3_host_name: 'ap-northeast-1',
+    s3_host_name: 's3-' + ENV['AWS_S3_REGION'] + '.amazonaws.com',
     s3_credentials: {
-      bucket: 'chest-registry'
+      bucket: ENV['AWS_S3_BUCKET'],
+      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
 end

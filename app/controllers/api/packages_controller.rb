@@ -7,12 +7,13 @@ class API::PackagesController < ApplicationController
 
   # GET /api/packages/:name
   def show
-    puts request.url
-    puts request.body.read
   end
 
   # GEt /api/packages/:name/versions/latest
   def download
+    unless @package
+      return render json: {error: 404}
+    end
     required_version = package_params[:version]
     @version = required_version == 'latest' ? @package.versions.last : @package.versions.find_by(version: required_version)
     send_file @version.archive.path, type: @version.archive_content_type, disposition: 'inline'
