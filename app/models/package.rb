@@ -3,9 +3,11 @@ class Package < ActiveRecord::Base
   has_many :versions, dependent: :destroy
 
   # Validation
-  validates_uniqueness_of :name, scope: :deleted_at
+  validates_uniqueness_of :name
   validates :name, presence: true, length: { maximum: 20 }, format: { with: /\A[A-Za-z0-9_-]+\z/ }
   validates :user, presence: true
+
+  serialize :authors
 
   before_create :generate_readme_html
 

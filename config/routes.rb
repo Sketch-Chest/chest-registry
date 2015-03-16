@@ -8,8 +8,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :packages, only: [:show, :create, :update, :destroy] do
-      member do
-        get :download
+      resources :versions, only: [:show, :index], constraints: { id: /[^\/]+/ } do
+        member do
+          get :download
+        end
       end
     end
   end
