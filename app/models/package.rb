@@ -1,6 +1,4 @@
 class Package < ActiveRecord::Base
-  acts_as_paranoid
-
   belongs_to :user
   has_many :versions, dependent: :destroy
 

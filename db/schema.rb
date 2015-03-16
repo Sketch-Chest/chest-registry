@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20150314032402) do
     t.string   "authors"
     t.string   "license"
     t.integer  "download_count",  default: 0
-    t.datetime "deleted_at"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
@@ -37,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150314032402) do
   create_table "users", force: :cascade do |t|
     t.string   "name",                                null: false
     t.string   "token"
+    t.datetime "deleted_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "email",                  default: "", null: false
@@ -57,13 +57,12 @@ ActiveRecord::Schema.define(version: 20150314032402) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "versions", force: :cascade do |t|
+    t.integer  "package_id",           null: false
     t.string   "version",              null: false
     t.string   "archive_file_name",    null: false
     t.string   "archive_content_type", null: false
     t.integer  "archive_file_size",    null: false
     t.datetime "archive_updated_at",   null: false
-    t.integer  "package_id",           null: false
-    t.datetime "deleted_at"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end

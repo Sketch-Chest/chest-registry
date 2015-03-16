@@ -13,7 +13,6 @@ class CreatePackages < ActiveRecord::Migration
       t.string :authors
       t.string :license
       t.integer :download_count, default: 0
-      t.datetime :deleted_at # paranoia
 
       t.timestamps null: false
     end

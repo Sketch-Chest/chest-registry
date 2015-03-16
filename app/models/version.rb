@@ -1,6 +1,4 @@
 class Version < ActiveRecord::Base
-  acts_as_paranoid
-
   belongs_to :package
 
   has_attached_file :archive
