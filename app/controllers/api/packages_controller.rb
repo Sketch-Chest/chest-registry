@@ -15,15 +15,16 @@ class API::PackagesController < ApplicationController
 
       @package = Package.find_by(name: metadata['name'])
       if @package.present?
-        if Semantic::Version.new(metadata['version']) <= @package.versions.last.semver
-          render json: {error: "Version number must be bigger than latest version of the package."}
-          return
-        end
-        @package.versions.create(
+        @version = @package.versions.build(
           version: metadata['version'],
           archive: package_params[:archive]
         )
-        render json: @package
+
+        if @version.save
+          render json: @package
+        else
+          render json: {error: @version.errors}
+        end
       else
         @package = Package.new(
           name: metadata['name'],
@@ -37,11 +38,16 @@ class API::PackagesController < ApplicationController
           user: @user,
         )
         if @package.save
-          @package.versions.create(
+          @version = @package.versions.build(
             version: metadata['version'],
             archive: package_params[:archive]
           )
-          render json: @package
+
+          if @version.save
+            render json: @package
+          else
+            render json: {error: @version.errors}
+          end
         else
           render json: {error: @package.errors}
         end
