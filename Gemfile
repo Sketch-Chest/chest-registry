@@ -21,6 +21,7 @@ gem 'semantic'
 gem 'dotenv-rails'
 gem 'devise'
 gem 'omniauth-github'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'sqlite3'
