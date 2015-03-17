@@ -4,7 +4,7 @@ class Package < ActiveRecord::Base
 
   # Validation
   validates_uniqueness_of :name
-  validates :name, presence: true, length: { maximum: 20 }, format: { with: /\A[A-Za-z0-9_-]+\z/ }
+  validates :name, presence: true, length: { maximum: 30 }, format: { with: /\A[A-Za-z0-9_-]+\z/ }
   validates :user, presence: true
 
   serialize :authors
