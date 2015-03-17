@@ -1,6 +1,6 @@
 class VersionValidator < ActiveModel::Validator
   def validate(record)
-    return unless record.class.last.present?
+    return unless record.package.versions.count > 0
     unless Semantic::Version.new(record.version) > Semantic::Version.new(record.class.last.version)
       record.errors[:version] << 'Must be bigger than exists'
     end
