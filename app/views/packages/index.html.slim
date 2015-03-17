@@ -1,11 +1,18 @@
-h1 Discover awesome Sketch plugins(h1)
+.package-intro
+  .content-layer
+    h1 A lightweight plugin manager for Sketch.
 
-/ TODO: Show search form
+    .button.flipped
+      span $ gem install chest
+    p = link_to 'View on Github', 'https://github.com/Sketch-Chest'
 
-h2 Featured(h2)
-
-p
-  | there are featured plugins.(p)<br>
-  | Register your plugins as well!
-
-/ TODO: List featured plugins
+.content-layer
+  .package-list
+    - Package.all.each do |package|
+      .package-list-item
+        h2 = link_to package.name, package
+        p = package.description
+        ul
+          li #{evil_icon 'ei-user'} #{link_to package.user.name, package.user}
+          li #{evil_icon 'ei-archive'} #{package.versions.last.version}
+          li #{evil_icon 'ei-chart'} #{package.download_count}

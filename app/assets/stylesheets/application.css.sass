@@ -11,8 +11,18 @@ body
   font-family: "Lato", sans-serif
 
 main
-  background-color: #F7F3F3
+
+.content-layer
   padding: 0 100px
+
+a
+  color: #F8412E
+
+a:link, a:visited
+  text-decoration: none
+
+a:hover, a:active
+  text-decoration: underline
 
 h1
   font-size: 48px
@@ -25,6 +35,34 @@ p, li, h2, h3, h4, h5, h6
 
 ol, ul
   list-style-position: inside
+
+.button
+  display: inline-block
+  margin-top: 20px
+  padding: 14px 27px
+  font-size: 20px
+  font-weight: 300
+  color: #F8412E
+  border: 1px solid #F8412E
+  border-radius: 3px
+
+  &.reactive
+    cursor: pointer
+
+  &.reactive:hover
+    border: none
+    background-color: #F8412E
+    color: #fff
+
+.button.flipped
+  border: 1px solid transparent
+  background-color: #F8412E
+  color: #fff
+
+  &.reactive:hover
+    border: 1px solid #F8412E
+    background-color: transparent
+    color: #F8412E
 
 header
   height: 50px
