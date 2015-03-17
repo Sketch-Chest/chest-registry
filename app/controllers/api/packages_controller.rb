@@ -15,15 +15,15 @@ class API::PackagesController < ApplicationController
 
       @package = Package.find_by(name: metadata['name'])
       if @package.present?
-        @version = @package.versions.build(
+        @package.versions.build(
           version: metadata['version'],
           archive: package_params[:archive]
         )
 
-        if @version.save
+        if @package.save
           render json: @package
         else
-          render json: {error: @version.errors}
+          render json: {error: @package.errors}
         end
       else
         @package = Package.new(
@@ -38,15 +38,15 @@ class API::PackagesController < ApplicationController
           user: @user,
         )
         if @package.save
-          @version = @package.versions.build(
+          @package.versions.build(
             version: metadata['version'],
             archive: package_params[:archive]
           )
 
-          if @version.save
+          if @package.save
             render json: @package
           else
-            render json: {error: @version.errors}
+            render json: {error: @package.errors}
           end
         else
           render json: {error: @package.errors}
