@@ -29,7 +29,8 @@ html
 
       nav.nav-user
         - if user_signed_in?
-          = link_to current_user.name, current_user
+          = link_to current_user do
+            = gravatar_image_tag current_user.email, gravatar: { size: 32 }
           = link_to 'Logout', destroy_user_session_path, method: :delete
         - else
           = link_to 'Create Account', new_user_registration_path
