@@ -21,6 +21,8 @@ class API::VersionsController < ApplicationController
     unless @version.present?
       return render json: {error: 404}
     end
+
+    @package.increase_download_count
     send_file @version.archive.path, type: @version.archive_content_type, disposition: 'inline'
   end
 

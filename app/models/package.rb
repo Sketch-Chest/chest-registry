@@ -17,6 +17,11 @@ class Package < ActiveRecord::Base
     name
   end
 
+  def increase_download_count
+    self.download_count += 1
+    self.save
+  end
+
   private
   def generate_readme_html
     md = Kramdown::Document.new(self.readme)
