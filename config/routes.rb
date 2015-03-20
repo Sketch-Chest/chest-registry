@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :users, except: [:index]
+  resources :users, only: [:show]
   resources :packages, only: [:index, :show]
 
   namespace :api do
