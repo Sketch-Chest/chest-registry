@@ -17,8 +17,8 @@ html
       nav.nav-global
         = link_to 'Chest', root_path, class: 'chest-logo'
         = link_to 'Browse', packages_path
-        = link_to 'Document', 'https://github.com/uetchy/chest.pm'
-        = link_to 'GitHub', 'https://github.com/uetchy/chest.pm', target: '_blank'
+        = link_to 'Document', 'https://github.com/Sketch-Chest'
+        = link_to 'GitHub', 'https://github.com/Sketch-Chest', target: '_blank'
 
       nav.nav-user
         - if user_signed_in?
@@ -28,7 +28,7 @@ html
         - else
           = link_to 'Create Account', new_user_registration_path
           = link_to 'Sign in/up with Github', user_omniauth_authorize_path(:github)
-          = link_to 'Login', new_user_session_path
+          = link_to 'Login', new_user_session_path, class: :em
 
     main
       = yield

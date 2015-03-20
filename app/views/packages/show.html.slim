@@ -4,13 +4,11 @@
       h1.package-name = @package.name
       h2.package-description = @package.description
 
-      .field
-        .button
-          span.button-addon-console chest install #{@package.name}
-
   .package-details
     .fluid-content
       ul.list.list-horizontal.list-stretched
+        li.list-item
+          .package-installation chest install #{@package.name}
         li.list-item
           i.list-icon.fi-torso
           = link_to @package.user.name, @package.user

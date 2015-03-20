@@ -1,0 +1,67 @@
+@import config
+
+.button
+  outline: none
+  background-color: transparent
+  display: inline-block
+  padding: 14px 27px
+  font-size: 20px
+  font-weight: 300
+  color: $theme_color
+  border: 1px solid $theme_color
+  border-radius: 2px
+  cursor: pointer
+
+  a
+    color: $theme_color
+    text-decoration: none
+
+.button.flipped
+  border: 1px solid transparent
+  background-color: $theme_color
+  color: #fff
+
+  a
+    color: #fff
+
+.button-addon-console:before
+  content: '$'
+  margin-right: 5px
+
+.list
+  list-style: none
+
+.list-horizontal
+  display: flex
+  flex-flow: row wrap
+  flex-direction: flex-start
+  align-items: center
+
+  .list-item
+    margin-left: 12px
+    &:first-child
+      margin-left: 0
+
+    .list-icon
+      margin-right: 8px
+
+.list-stretched
+  justify-content: space-between
+
+  .list-item
+    flex-grow: 1
+
+.fluid-content
+  padding: 0 100px
+
+.section
+  padding-top: 50px
+  padding-bottom: 50px
+
+.field
+  margin: 15px 0
+
+.actions
+  input[type=submit]
+    @extend .button
+    @extend .button.flipped

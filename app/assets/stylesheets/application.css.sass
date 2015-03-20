@@ -6,14 +6,15 @@
 @import foundation-icons
 @import bourbon
 @import reset
+@import config
 
-$font_color: #1F1F1F
-$bg_color: #F7F3F3
+*, *:before, *:after
+  box-sizing: border-box
 
 body
   font-family: "Lato", sans-serif
   color: $font_color
-  font-size: 13pt
+  font-size: 12pt
 
 a
   color: $font_color
@@ -36,96 +37,17 @@ p, li, h2, h3, h4, h5, h6
 ol, ul
   list-style-position: inside
 
-.button
+input[type=text],input[type=email],input[type=password]
+  width: 100%
+  border: none
   outline: none
-  background-color: transparent
-  display: inline-block
-  padding: 14px 27px
-  font-size: 20px
-  font-weight: 300
-  color: #F8412E
-  border: 1px solid #F8412E
-  border-radius: 2px
-  cursor: pointer
-
-  a
-    color: #F8412E
-    text-decoration: none
-
-.button.flipped
-  border: 1px solid transparent
-  background-color: #F8412E
-  color: #fff
-
-  a
-    color: #fff
-
-  &:hover
-    background-color: #E53624
-
-.button-addon-console:before
-  content: '$'
-  margin-right: 5px
-
-.list
-  list-style: none
-
-.list-horizontal
-  display: flex
-  flex-flow: row wrap
-  flex-direction: flex-start
-  align-items: center
-
-  .list-item
-    margin-left: 12px
-    &:first-child
-      margin-left: 0
-
-    .list-icon
-      margin-right: 8px
-
-.list-stretched
-  justify-content: space-between
-
-  .list-item
-    flex-grow: 1
-
-.fluid-content
-  padding: 0 100px
-
-.section
-  padding-top: 50px
-  padding-bottom: 50px
-
-.field
-  margin: 15px 0
-
-  input[type=text],input[type=email],input[type=password]
-    width: 100%
-    border: none
-    outline: none
-    margin: 10px 0
-    padding: 15px 15px
-    font-size: 16pt
-
-.actions
-  input[type=submit]
-    @extend .button
-    @extend .button.flipped
-  // input[type=submit]
-  //   border: none
-  //   outline: none
-  //   background: #F25844
-  //   padding: 15px 40px
-  //   color: #FFF
-  //   font-size: 12pt
-  //   border-bottom: 5px solid #C24737
-  //   font-family: Acrom
-  //   text-transform: uppercase
-  //   letter-spacing: 1px
+  margin: 10px 0
+  padding: 15px 15px
+  font-size: 16pt
+  background-color: $well_color
 
 header
-  height: 50px
+  height: 80px
   background-color: #fff
 
   display: flex
@@ -133,6 +55,7 @@ header
   justify-content: space-between
   align-items: center
   padding: 0 100px
+  border-bottom: 1px solid #F5F5F5
 
   .chest-logo
     @include hide-text
@@ -147,34 +70,7 @@ header
     flex-flow: row nowrap
     align-items: center
 
-    &.nav-global
-      // justify-content: flex-start
-
-    // &.nav-search
-    //   margin: 0 50px
-    //   padding: 0 10px
-    //   flex-grow: 1
-    //   border: 1px solid #ededed
-    //   border-top: none
-    //   border-bottom: none
-    //   display: flex
-    //   flex-flow: row nowrap
-
-      // .icon
-      //   width: 30px
-      //   height: 30px
-      //   fill: #7E7E7E
-
-      // form, input[type=text]
-      //   width: 100%
-
-      // input[type=text]
-      //   border: 0
-      //   outline: none
-      //   font-size: 25px
-
-    &.nav-user
-
+    text-transform: uppercase
 
     a
       color: #000
@@ -182,10 +78,21 @@ header
       font-weight: 500
       font-size: 14px
 
-      &:hover, &:active
-        color: #888888
-
       margin-left: 30px
+
+      &:hover, &:active
+        text-decoration: none
+        color: $theme_color
+
       &:first-child
         margin-left: 0
+
+    a.em
+      border: 2px solid #000
+      padding: 5px 20px
+      font-weight: bold
+
+      &:hover, &:active
+        text-decoration: none
+        color: $font_color
 

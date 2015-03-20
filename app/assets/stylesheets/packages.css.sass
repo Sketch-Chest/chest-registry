@@ -1,28 +1,51 @@
+@import config
+
 .package-intro
   padding: 100px 0
   text-align: center
-  background-color: #F7F3F3
+  background-color: $bg_color
+
+  a
+    color: $theme_color
 
 .package-meta
-  background-color: #F7F3F3
-
   .package-basics
-    padding: 50px 0 20px
-    background-color: #F7F3F3
+    padding: 90px 0 30px
+    background-color: $bg_color3
+
+    .package-name
+      font-size: 37pt
+      color: #fff
 
     .package-description
       color: #837B7B
+      font-weight: 300
 
   .package-details
     padding: 20px 0
-    background-color: #E7E1E1
+    background-color: #FAF7F7
+
+    .package-installation
+      outline: none
+      background-color: transparent
+      display: inline-block
+      padding: 12px 27px
+      font-size: 18px
+      font-weight: 300
+      color: $theme_color
+      border: 1px solid $theme_color
+      cursor: pointer
+
+      &:before
+        content: '$'
+        margin-right: 5px
 
 .package-readme
   padding: 50px 100px
   background-color: #fff
 
   a
-    color: #F8412E
+    color: $theme_color
 
   a:link, a:visited
     text-decoration: none
