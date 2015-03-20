@@ -2,11 +2,16 @@ json.(@package,
   :name,
   :description,
   :license,
-  :homepage
+  :homepage,
+  :repository,
+  :keywords,
+  :authors,
+  :created_at,
+  :updated_at
 )
 
 json.version @package.versions.last.version
 
-json.author do
+json.owner do
   json.name @package.user
 end

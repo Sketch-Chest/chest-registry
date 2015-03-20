@@ -1,1 +1,1 @@
-json.extract! @version, :version
+json.extract! @version, :version, :created_at
