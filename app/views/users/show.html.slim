@@ -3,6 +3,9 @@
 
   - if current_user == @user
     .well.field Your auth token is <b>#{current_user.token}</b>
+    ul.list
+      li = link_to 'Edit', edit_user_registration_path
+      li = link_to 'Cancel Account', user_registration_path, method: :delete
 
   .package-list.section
     - if @user.packages.present?

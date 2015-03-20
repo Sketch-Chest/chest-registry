@@ -18,6 +18,11 @@ class User < ActiveRecord::Base
     name
   end
 
+  # omniauth existence
+  def omniauth_connected?
+    self.provider.present?
+  end
+
   # Use for authenticate & create account with GitHub
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
