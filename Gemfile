@@ -35,6 +35,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'faker'
   gem 'fabrication'
+  gem 'thin'
 end
 
 group :production do
