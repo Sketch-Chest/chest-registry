@@ -1,24 +1,31 @@
 .package-meta
   .package-basics
-    h1.package-name = @package.name
-    h2.package-description = @package.description
+    .fluid-content
+      h1.package-name = @package.name
+      h2.package-description = @package.description
 
-    .package-instruction
-      span $ chest install #{@package.name}
+      .field
+        .button
+          span.button-addon-console chest install #{@package.name}
 
   .package-details
-    ul
-      li #{evil_icon 'ei-user'} #{link_to @package.user.name, @package.user}
-      li #{evil_icon 'ei-archive'} #{@package.versions.last.version}
-      li #{evil_icon 'ei-chart'} #{@package.download_count}
-
-
-  / ul
-  /   li = @package.user.name
-  /   li = @package.repository
-  /   li = @package.license || "No license indicated"
-    / li = @package.version
-    / li = @package.download_count || 0
+    .fluid-content
+      ul.list.list-horizontal.list-stretched
+        li.list-item
+          i.list-icon.fi-torso
+          = link_to @package.user.name, @package.user
+        li.list-item
+          i.list-icon.fi-clock
+          = @package.versions.last.version
+        li.list-item
+          i.list-icon.fi-archive
+          = @package.download_count
+        li.list-item
+          i.list-icon.fi-page
+          = link_to @package.homepage, @package.homepage, target: :blank
+        li.list-item
+          i.list-icon.fi-info
+          = @package.license || "No license indicated"
 
 / Favorite button
 .package-readme

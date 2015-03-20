@@ -7,8 +7,6 @@ html
     = csrf_meta_tags
 
   body
-    = evil_icons_sprite
-
     .notification
       - if flash[:notice]
         p.notice = flash[:notice]
@@ -22,11 +20,6 @@ html
         = link_to 'Document', 'https://github.com/uetchy/chest.pm'
         = link_to 'GitHub', 'https://github.com/uetchy/chest.pm', target: '_blank'
 
-      nav.nav-search
-        = evil_icon 'ei-search'
-        = form_tag do
-          = text_field_tag 'test'
-
       nav.nav-user
         - if user_signed_in?
           = link_to current_user do
@@ -34,7 +27,7 @@ html
           = link_to 'Logout', destroy_user_session_path, method: :delete
         - else
           = link_to 'Create Account', new_user_registration_path
-          = link_to 'Sign in with Github', user_omniauth_authorize_path(:github)
+          = link_to 'Sign in/up with Github', user_omniauth_authorize_path(:github)
           = link_to 'Login', new_user_session_path
 
     main

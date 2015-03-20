@@ -1,22 +1,22 @@
 /*
- *= require evil-icons
  *= require_tree .
  *= require_self
  */
 
+@import foundation-icons
 @import bourbon
 @import reset
 
+$font_color: #1F1F1F
+$bg_color: #F7F3F3
+
 body
   font-family: "Lato", sans-serif
-
-main
-
-.content-layer
-  padding: 0 100px
+  color: $font_color
+  font-size: 13pt
 
 a
-  color: #F8412E
+  color: $font_color
 
 a:link, a:visited
   text-decoration: none
@@ -37,32 +37,92 @@ ol, ul
   list-style-position: inside
 
 .button
+  outline: none
+  background-color: transparent
   display: inline-block
-  margin-top: 20px
   padding: 14px 27px
   font-size: 20px
   font-weight: 300
   color: #F8412E
   border: 1px solid #F8412E
-  border-radius: 3px
+  border-radius: 2px
+  cursor: pointer
 
-  &.reactive
-    cursor: pointer
-
-  &.reactive:hover
-    border: none
-    background-color: #F8412E
-    color: #fff
+  a
+    color: #F8412E
+    text-decoration: none
 
 .button.flipped
   border: 1px solid transparent
   background-color: #F8412E
   color: #fff
 
-  &.reactive:hover
-    border: 1px solid #F8412E
-    background-color: transparent
-    color: #F8412E
+  a
+    color: #fff
+
+  &:hover
+    background-color: #E53624
+
+.button-addon-console:before
+  content: '$'
+  margin-right: 5px
+
+.list
+  list-style: none
+
+.list-horizontal
+  display: flex
+  flex-flow: row wrap
+  flex-direction: flex-start
+  align-items: center
+
+  .list-item
+    margin-left: 12px
+    &:first-child
+      margin-left: 0
+
+    .list-icon
+      margin-right: 8px
+
+.list-stretched
+  justify-content: space-between
+
+  .list-item
+    flex-grow: 1
+
+.fluid-content
+  padding: 0 100px
+
+.section
+  padding-top: 50px
+  padding-bottom: 50px
+
+.field
+  margin: 15px 0
+
+  input[type=text],input[type=email],input[type=password]
+    width: 100%
+    border: none
+    outline: none
+    margin: 10px 0
+    padding: 15px 15px
+    font-size: 16pt
+
+.actions
+  input[type=submit]
+    @extend .button
+    @extend .button.flipped
+  // input[type=submit]
+  //   border: none
+  //   outline: none
+  //   background: #F25844
+  //   padding: 15px 40px
+  //   color: #FFF
+  //   font-size: 12pt
+  //   border-bottom: 5px solid #C24737
+  //   font-family: Acrom
+  //   text-transform: uppercase
+  //   letter-spacing: 1px
 
 header
   height: 50px
@@ -70,7 +130,7 @@ header
 
   display: flex
   flex-flow: row nowrap
-  justify-content: flex-start
+  justify-content: space-between
   align-items: center
   padding: 0 100px
 
@@ -88,33 +148,33 @@ header
     align-items: center
 
     &.nav-global
-      justify-content: flex-start
+      // justify-content: flex-start
 
-    &.nav-search
-      margin: 0 50px
-      padding: 0 10px
-      flex-grow: 1
-      border: 1px solid #ededed
-      border-top: none
-      border-bottom: none
-      display: flex
-      flex-flow: row nowrap
+    // &.nav-search
+    //   margin: 0 50px
+    //   padding: 0 10px
+    //   flex-grow: 1
+    //   border: 1px solid #ededed
+    //   border-top: none
+    //   border-bottom: none
+    //   display: flex
+    //   flex-flow: row nowrap
 
-      .icon
-        width: 30px
-        height: 30px
-        fill: #7E7E7E
+      // .icon
+      //   width: 30px
+      //   height: 30px
+      //   fill: #7E7E7E
 
-      form, input[type=text]
-        width: 100%
+      // form, input[type=text]
+      //   width: 100%
 
-      input[type=text]
-        border: 0
-        outline: none
-        font-size: 25px
+      // input[type=text]
+      //   border: 0
+      //   outline: none
+      //   font-size: 25px
 
     &.nav-user
-      justify-content: flex-end
+
 
     a
       color: #000

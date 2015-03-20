@@ -4,31 +4,31 @@
   background-color: #F7F3F3
 
 .package-meta
-  padding: 50px 0
   background-color: #F7F3F3
-  display: flex
-  flex-flow: row
-  justify-content: flex-start
-
-  .package-basics, .package-details
-    flex-grow: 1
 
   .package-basics
+    padding: 50px 0 20px
+    background-color: #F7F3F3
+
     .package-description
       color: #837B7B
 
   .package-details
-    ul
-      list-style: none
-
-      li
-        display: flex
-        flex-flow: row nowrap
-        align-items: center
+    padding: 20px 0
+    background-color: #E7E1E1
 
 .package-readme
   padding: 50px 100px
   background-color: #fff
+
+  a
+    color: #F8412E
+
+  a:link, a:visited
+    text-decoration: none
+
+  a:hover, a:active
+    text-decoration: underline
 
   h2
     margin-top: 30px
@@ -40,9 +40,9 @@
     // width: 100%
 
 .package-list
-  display: box
+  display: flex
   flex-flow: row wrap
   justify-content: flex-start
 
   .package-list-item
-    border: 1px solid #000
+    flex-grow: 1

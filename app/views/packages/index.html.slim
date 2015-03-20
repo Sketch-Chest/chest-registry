@@ -1,18 +1,26 @@
 .package-intro
-  .content-layer
+  .fluid-content
     h1 A lightweight plugin manager for Sketch.
 
-    .button.flipped
-      span $ gem install chest
-    p = link_to 'View on Github', 'https://github.com/Sketch-Chest'
+    .section
+      .button.flipped
+        span.button-addon-console gem install chest
 
-.content-layer
+      p = link_to 'View on Github', 'https://github.com/Sketch-Chest'
+
+.fluid-content.section
   .package-list
     - Package.all.each do |package|
       .package-list-item
         h2 = link_to package.name, package
         p = package.description
-        ul
-          li #{evil_icon 'ei-user'} #{link_to package.user.name, package.user}
-          li #{evil_icon 'ei-archive'} #{package.versions.last.version}
-          li #{evil_icon 'ei-chart'} #{package.download_count}
+        ul.list.list-horizontal
+          li.list-item
+            i.list-icon.fi-torso
+            = link_to package.user.name, package.user
+          li.list-item
+            i.list-icon.fi-clock
+            = package.versions.last.version
+          li.list-item
+            i.list-icon.fi-archive
+            = package.download_count

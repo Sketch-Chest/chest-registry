@@ -1,22 +1,28 @@
-h2 Log in
+.fluid-content.section
+  h1 Log in
 
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true
-
-  .field
-    = f.label :password
-    br
-    = f.password_field :password, autocomplete: "off"
-
-  - if devise_mapping.rememberable?
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .field
-      = f.check_box :remember_me
-      = f.label :remember_me
+      = f.label :email
+      = f.email_field :email, autofocus: true
 
-  .actions
-    = f.submit "Log in"
+    .field
+      = f.label :password
+      = f.password_field :password, autocomplete: "off"
 
-= render "devise/shared/links"
+    - if devise_mapping.rememberable?
+      .field
+        = f.check_box :remember_me
+        = f.label :remember_me
+
+    .actions.list.list-horizontal
+      .list-item
+        = f.submit "Log in"
+      - resource_class.omniauth_providers.each do |provider|
+        .list-item
+          = link_to omniauth_authorize_path(resource_name, provider) do
+            i.list-icon.fi-social-github
+            = "Sign in with #{provider.to_s.titleize}"
+
+  .field
+    = render "devise/shared/links"
