@@ -17,6 +17,7 @@ class API::VersionsController < ApplicationController
     end
   end
 
+  # GET /api/packages/:id/versions/:version/download
   def download
     unless @version.present?
       return render json: {error: 404}
@@ -30,7 +31,15 @@ class API::VersionsController < ApplicationController
   def set_version
     @package = Package.find_by(name: params[:package_id])
 
+    unless @package.present?
+      return head 404
+    end
+
     required_version = params[:id]
     @version = required_version == 'latest' ? @package.versions.last : @package.versions.find_by(version: required_version)
+
+    unless @version.present?
+      return head 404
+    end
   end
 end

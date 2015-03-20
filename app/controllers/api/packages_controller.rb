@@ -56,6 +56,7 @@ class API::PackagesController < ApplicationController
     end
   end
 
+  # DELETE /api/packages/:name
   def destroy
     if @user = User.find_by(token: package_params[:token])
       if @package.user == @user
