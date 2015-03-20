@@ -14,20 +14,19 @@
 ActiveRecord::Schema.define(version: 20150314032404) do
 
   create_table "packages", force: :cascade do |t|
-    t.string   "name",                        null: false
-    t.integer  "user_id",                     null: false
+    t.string   "name",                       null: false
+    t.integer  "user_id",                    null: false
     t.text     "description"
     t.text     "readme"
     t.text     "readme_html"
     t.string   "homepage"
-    t.string   "repository_type"
-    t.string   "repository_url"
-    t.string   "keywords"
+    t.string   "repository"
+    t.text     "keywords"
     t.text     "authors"
     t.string   "license"
-    t.integer  "download_count",  default: 0
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "download_count", default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   add_index "packages", ["name"], name: "index_packages_on_name", unique: true

@@ -11,12 +11,17 @@ class API::PackagesController < ApplicationController
   # POST /api/packages
   def create
     if @user = User.find_by(token: package_params[:token])
-      metadata = JSON.parse(package_params[:metadata])
 
-      @package = Package.find_by(name: metadata['name'])
+      metadata = package_params[:metadata]
+      @package = Package.find_by(name: metadata[:name])
+
       if @package.present?
+        metadata.delete :name
+        version = metadata.delete(:version)
+        @package.update metadata
+
         @package.versions.build(
-          version: metadata['version'],
+          version: version,
           archive: package_params[:archive]
         )
 
@@ -26,20 +31,13 @@ class API::PackagesController < ApplicationController
           render json: {error: @package.errors}
         end
       else
-        @package = Package.new(
-          name: metadata['name'],
-          description: metadata['description'],
-          readme: metadata['readme'],
-          homepage: metadata['homepage'],
-          keywords: metadata['keywords'].join(','),
-          repository_type: metadata['repository']['type'],
-          repository_url: metadata['repository']['url'],
-          authors: metadata['authors'], #array
-          user: @user,
-        )
+        version = metadata.delete(:version)
+        @package = Package.new(metadata)
+        @package.user = @user
+
         if @package.save
           @package.versions.build(
-            version: metadata['version'],
+            version: version,
             archive: package_params[:archive]
           )
 
@@ -77,6 +75,21 @@ class API::PackagesController < ApplicationController
   end
 
   def package_params
-    params.permit(:token, :metadata, :archive, :version)
+    params.permit(
+      :token,
+      :archive,
+      :version,
+      { metadata: [
+        :name,
+        :version,
+        :description,
+        :readme,
+        :homepage,
+        :license,
+        :repository,
+        { keywords: [] },
+        { authors: [] }
+      ]}
+    )
   end
 end

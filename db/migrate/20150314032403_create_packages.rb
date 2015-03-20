@@ -7,9 +7,8 @@ class CreatePackages < ActiveRecord::Migration
       t.text :readme
       t.text :readme_html
       t.string :homepage
-      t.string :repository_type
-      t.string :repository_url
-      t.string :keywords
+      t.string :repository
+      t.text :keywords
       t.text :authors
       t.string :license
       t.integer :download_count, default: 0

@@ -8,8 +8,9 @@ class Package < ActiveRecord::Base
   validates :user, presence: true
 
   serialize :authors
+  serialize :keywords
 
-  before_create :generate_readme_html
+  before_save :generate_readme_html
 
   # use :name as primary key instead of :id
   def to_param
