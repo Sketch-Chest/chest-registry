@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   acts_as_paranoid
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-  devise :omniauthable, omniauth_providers: [:github]
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, omniauth_providers: [:github]
 
   include Tokenable
 
@@ -18,22 +18,14 @@ class User < ActiveRecord::Base
     name
   end
 
-  # Use for authenticate with GitHub
+  # Use for authenticate & create account with GitHub
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
       user.email = auth.info.email
+      user.name = auth.info.nickname
       user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name
-    end
-  end
-
-  # Use for registration after authenticate with GitHub
-  def self.new_with_session(params, session)
-    super.tap do |user|
-      if data = session['devise.github_data']
-        user.email = data['info']['email'] if user.email.blank?
-        user.name  = data['info']['nickname'] if user.name.blank?
-      end
     end
   end
 end
