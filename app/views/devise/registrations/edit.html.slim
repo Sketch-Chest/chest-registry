@@ -13,7 +13,6 @@
         = resource.unconfirmed_email
     .field
       = f.label :password
-      i (leave blank if you don't want to change it)
       br
       = f.password_field :password, autocomplete: "off"
     .field
@@ -23,7 +22,6 @@
     - unless current_user.omniauth_connected?
       .field
         = f.label :current_password
-        i (we need your current password to confirm your changes)
         br
         = f.password_field :current_password, autocomplete: "off"
     .actions
