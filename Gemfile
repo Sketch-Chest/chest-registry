@@ -29,12 +29,13 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'quiet_assets'
   gem 'meta_request'
   gem 'web-console'
   gem 'rspec-rails'
   gem 'faker'
-  gem 'fabrication'
+  gem 'factory_girl_rails'
   gem 'thin'
 end
 

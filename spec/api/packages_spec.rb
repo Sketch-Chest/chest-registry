@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe PackagesController do
   it 'can get package info' do
-    @package = Fabricate(:package)
+    @package = create(:package)
+    @version = create(:version, package: @package)
 
     get "/api/packages/#{@package.name}"
     expect(response.status).to be(200)
@@ -10,7 +11,7 @@ RSpec.describe PackagesController do
   end
 
   it 'cat publish package' do
-    @user = Fabricate(:user)
+    @user = create(:user)
 
     metadata = {
       name: 'StickyGrid',
