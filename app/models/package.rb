@@ -10,7 +10,7 @@ class Package < ActiveRecord::Base
   serialize :authors
   serialize :keywords
 
-  before_save :generate_readme_html
+  before_save :generate_readme_html, if: :readme
 
   # use :name as primary key instead of :id
   def to_param
