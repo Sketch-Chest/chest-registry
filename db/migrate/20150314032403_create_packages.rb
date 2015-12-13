@@ -2,14 +2,14 @@ class CreatePackages < ActiveRecord::Migration
   def change
     create_table :packages do |t|
       t.string :name, null: false
+      t.string :identifier, null: false
       t.references :user, null: false, index: true
       t.text :description
       t.text :readme
-      t.text :readme_html
       t.string :homepage
       t.string :repository
       t.text :keywords
-      t.text :authors
+      t.text :author
       t.string :license
       t.integer :download_count, default: 0
 

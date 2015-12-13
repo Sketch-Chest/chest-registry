@@ -15,14 +15,14 @@ ActiveRecord::Schema.define(version: 20150314032404) do
 
   create_table "packages", force: :cascade do |t|
     t.string   "name",                       null: false
+    t.string   "identifier",                 null: false
     t.integer  "user_id",                    null: false
     t.text     "description"
     t.text     "readme"
-    t.text     "readme_html"
     t.string   "homepage"
     t.string   "repository"
     t.text     "keywords"
-    t.text     "authors"
+    t.text     "author"
     t.string   "license"
     t.integer  "download_count", default: 0
     t.datetime "created_at",                 null: false
@@ -56,14 +56,10 @@ ActiveRecord::Schema.define(version: 20150314032404) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "versions", force: :cascade do |t|
-    t.integer  "package_id",           null: false
-    t.string   "version",              null: false
-    t.string   "archive_file_name",    null: false
-    t.string   "archive_content_type", null: false
-    t.integer  "archive_file_size",    null: false
-    t.datetime "archive_updated_at",   null: false
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.integer  "package_id", null: false
+    t.string   "tag",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "versions", ["package_id"], name: "index_versions_on_package_id"
