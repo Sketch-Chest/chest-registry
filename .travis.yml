@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+  - 2.2.3
+bundler_args: --without development --deployment --jobs=4 --retry=3
+cache: bundler
+notifications:
+  slack:
+    secure: "Na4pl5qYAYRJP1hVjdKjPw/Fp8kbzTZrVpubeSY3DWd45lorSPl6ZjEZiuEqGegpcBngrB6PHfHpN2vmEfoqH0+hhRwCJmNx9rNHn1gBiSouIUZvMjIry+WF+Ru7qiy9o0rQjsu1NPoPaYMLTJqfNaVFGFwVjdbz6DPMLJlL8gc="
