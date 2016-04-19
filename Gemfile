@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
+ruby '2.3.0'
 
-gem 'rails', '4.2.5'
+gem 'rails', '4.2.6'
 gem 'react-rails'
 gem 'browserify-rails'
 
