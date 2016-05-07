@@ -27,10 +27,9 @@ ActiveRecord::Schema.define(version: 20150314032404) do
     t.integer  "download_count", default: 0
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.index ["name"], name: "index_packages_on_name", unique: true
+    t.index ["user_id"], name: "index_packages_on_user_id"
   end
-
-  add_index "packages", ["name"], name: "index_packages_on_name", unique: true
-  add_index "packages", ["user_id"], name: "index_packages_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                                null: false
@@ -50,10 +49,9 @@ ActiveRecord::Schema.define(version: 20150314032404) do
     t.string   "last_sign_in_ip"
     t.string   "provider"
     t.string   "uid"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "versions", force: :cascade do |t|
     t.integer  "package_id",           null: false
@@ -64,8 +62,7 @@ ActiveRecord::Schema.define(version: 20150314032404) do
     t.datetime "archive_updated_at",   null: false
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.index ["package_id"], name: "index_versions_on_package_id"
   end
-
-  add_index "versions", ["package_id"], name: "index_versions_on_package_id"
 
 end
