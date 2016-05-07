@@ -7,15 +7,5 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :packages, only: [:index, :show]
 
-  namespace :api do
-    resources :packages, only: [:show, :create, :update, :destroy] do
-      resources :versions, only: [:show, :index], constraints: { id: /[^\/]+/ } do
-        member do
-          get :download
-        end
-      end
-    end
-  end
-
   root 'packages#index'
 end

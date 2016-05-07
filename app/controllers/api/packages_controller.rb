@@ -80,17 +80,7 @@ class API::PackagesController < ApplicationController
       :token,
       :archive,
       :version,
-      { metadata: [
-        :name,
-        :version,
-        :description,
-        :readme,
-        :homepage,
-        :license,
-        :repository,
-        { keywords: [] },
-        { authors: [] }
-      ]}
+      :manifest
     )
   end
 end
