@@ -20,7 +20,7 @@ RSpec.describe PackagesController do
       repository: 'https://github.com/uetchy/Sketch-StickyGrid'
     }
     data = fixture_file_upload('/files/Sketch-StickyGrid.zip', 'application/octet-stream', :binary)
-    post "/api/packages", token: @user.token, metadata: metadata.to_json, archive: data
+    post '/api/packages', token: @user.token, metadata: metadata.to_json, archive: data
     expect(response.status).to be(200)
   end
 end

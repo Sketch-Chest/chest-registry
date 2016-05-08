@@ -1,7 +1,7 @@
 user = User.create(
   name: 'test',
   email: 'test@example.com',
-  password: 'inyasuxs',
-  password_confirmation: 'inyasuxs')
+  password: 'testpass',
+  password_confirmation: 'testpass')
 user.token = 'test'
 user.save

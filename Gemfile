@@ -29,9 +29,9 @@ gem 'dotenv-rails'
 
 group :development, :test do
   gem 'sqlite3'
-  # gem 'pry-rails'
-  # gem 'pry-byebug'
-  # gem 'spring'
+  gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'spring'
   gem 'quiet_assets'
   gem 'web-console'
   gem 'rspec-rails'
