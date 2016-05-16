@@ -20,6 +20,7 @@ html
         = link_to 'Browse', packages_path
         = link_to 'Document', 'https://github.com/Sketch-Chest'
         = link_to 'GitHub', 'https://github.com/Sketch-Chest', target: '_blank'
+        = link_to 'Submit a Plugin', new_package_path
 
       nav.nav-user
         - if user_signed_in?
@@ -32,4 +33,5 @@ html
           = link_to 'Login', new_user_session_path, class: :em
 
     main
-      = yield
+      .fluid-content.section
+        = yield

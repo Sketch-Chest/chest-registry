@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:show]
-  resources :packages, only: [:index, :show]
+  resources :packages
 
   root 'packages#index'
 end
