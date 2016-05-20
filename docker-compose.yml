@@ -1,0 +1,7 @@
+app:
+  build: .
+  command: bundle exec rails server
+  ports:
+    - 3000:3000
+  volumes:
+    - .:/usr/src/app
