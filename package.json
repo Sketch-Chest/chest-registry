@@ -1,0 +1,40 @@
+{
+  "name": "chest-registry",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "xo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Sketch-Chest/chest-registry.git"
+  },
+  "keywords": [],
+  "author": "Yasuaki Uechi <uetchy@randompaper.co> (https://randompaper.co/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sketch-Chest/chest-registry/issues"
+  },
+  "homepage": "https://github.com/Sketch-Chest/chest-registry#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "express-session": "^1.14.0",
+    "mongoose": "^4.5.7",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-github2": "^0.1.10"
+  },
+  "devDependencies": {
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": true,
+    "envs": [
+      "browser",
+      "node"
+    ]
+  }
+}
