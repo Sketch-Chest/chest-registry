@@ -12,7 +12,7 @@ gem 'active_model_serializers'
 #gem 'bourbon'
 #gem 'autoprefixer-rails'
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'aws-sdk'    
 #gem 'kramdown'
 gem 'semantic'
 gem 'devise'
@@ -25,8 +25,9 @@ gem 'sidekiq'
 gem 'foundation-icons-sass-rails'
 gem 'dotenv-rails'
 
+gem 'pg'
+
 group :development, :test do
-  gem 'sqlite3'
   gem 'pry-rails'
   gem 'pry-byebug'
   gem 'spring'
@@ -39,7 +40,6 @@ group :development, :test do
 end
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
   # gem 'therubyracer', platforms: :ruby
 end
