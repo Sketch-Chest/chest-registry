@@ -14,5 +14,10 @@
   },
   "keywords": [],
   "author": "Yasuaki Uechi <uetchy@randompaper.co> (https://randompaper.co/)",
-  "license": "MIT"
+  "license": "MIT",
+  "xo": {
+    "envs": [
+      "browser"
+    ]
+  }
 }

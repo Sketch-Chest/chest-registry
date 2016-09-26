@@ -1,32 +1,59 @@
 const path = require('path');
 const express = require('express');
-const passport = require('passport');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const passport = require('passport');
 
+// passport middleware
+const LocalStrategy = require('passport-local').Strategy;
+
+// model
+const User = require('./models/user');
+
+// route
 const routes = require('./routes/index');
 const users = require('./routes/user');
 
 const app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
 app.use(logger('dev'));
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'client/public')));
+
+// session
 app.use(session({
-	secret: 'keyboard cat'
+	secret: 'keyboard cat',
+	resave: true,
+	saveUninitialized: true
 }));
+
+// authentication
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use(new LocalStrategy(
+	(username, password, done) => {
+		User.findOne({username}, (err, user) => {
+			if (err) {
+				return done(err);
+			}
+			if (!user) {
+				return done(null, false, {message: 'Incorrect username.'});
+			}
+			if (!user.validPassword(password)) {
+				return done(null, false, {message: 'Incorrect password.'});
+			}
+			return done(null, user);
+		});
+	}
+));
 
+// route
 app.use('/', routes);
 app.use('/users', users);
 

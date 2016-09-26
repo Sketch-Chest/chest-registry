@@ -2,10 +2,13 @@ const {Router} = require('express');
 
 const router = new Router();
 
-/* GET home page. */
-
+/* GET users listing. */
 router.get('/', (req, res) => {
-	res.json({index: true});
+	res.send('respond with a resource');
+});
+
+router.post('/', (req, res) => {
+	res.json({});
 });
 
 module.exports = router;
