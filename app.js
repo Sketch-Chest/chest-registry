@@ -7,8 +7,9 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const passport = require('passport');
 
-// passport middleware
-const LocalStrategy = require('passport-local').Strategy;
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').config();
+}
 
 // model
 const User = require('./models/user');
@@ -21,7 +22,6 @@ const app = express();
 
 app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -36,6 +36,9 @@ app.use(session({
 // authentication
 app.use(passport.initialize());
 app.use(passport.session());
+
+const LocalStrategy = require('passport-local').Strategy;
+
 passport.use(new LocalStrategy(
 	(username, password, done) => {
 		User.findOne({username}, (err, user) => {
@@ -51,6 +54,20 @@ passport.use(new LocalStrategy(
 			return done(null, user);
 		});
 	}
+));
+
+var GitHubStrategy = require('passport-github').Strategy;
+
+passport.use(new GitHubStrategy({
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: `http://127.0.0.1:${process.env.PORT}/auth/github/callback`
+  },
+  (accessToken, refreshToken, profile, done) => {
+    User.findOrCreate({githubId: profile.id}, (err, user) => {
+      return done(err, user);
+    });
+  }
 ));
 
 // route
