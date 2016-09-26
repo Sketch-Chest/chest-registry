@@ -1,10 +1,19 @@
 {
   "name": "chest-registry",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Chest registry service.",
+  "private": true,
+  "main": "app.js",
   "scripts": {
-    "test": "xo"
+    "postinstall": "npm --prefix client install",
+    "start": "node ./bin/www",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "test": "run-p test:*",
+    "test:server": "nyc ava && xo",
+    "test:client": "npm --prefix client test",
+    "watch": "run-p watch:*",
+    "watch:server": "nodemon ./bin/www",
+    "watch:client": "npm --prefix client start"
   },
   "repository": {
     "type": "git",
@@ -28,6 +37,12 @@
     "passport-github2": "^0.1.10"
   },
   "devDependencies": {
+    "ava": "^0.16.0",
+    "coveralls": "^2.11.14",
+    "dotenv": "^2.0.0",
+    "nodemon": "^1.10.2",
+    "npm-run-all": "^3.1.0",
+    "nyc": "^8.3.0",
     "xo": "^0.16.0"
   },
   "xo": {

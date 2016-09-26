@@ -7,20 +7,28 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 // const mongoose = require('mongoose');
 
+const routes = require('./routes/index');
+const users = require('./routes/user');
+
 const app = express();
 
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
 app.use(logger('dev'));
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, '../client/public')));
+app.use(express.static(path.join(__dirname, 'client/public')));
 app.use(session({
-	secret: 'keyboard cat',
-	resave: true,
-	saveUninitialized: true
+	secret: 'keyboard cat'
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use('/', routes);
+app.use('/users', users);
 
 // handle 404
 app.use((req, res, next) => {
