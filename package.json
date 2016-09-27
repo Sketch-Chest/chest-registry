@@ -12,7 +12,7 @@
     "test:server": "nyc ava && xo",
     "test:client": "npm --prefix client test",
     "watch": "run-p watch:*",
-    "watch:server": "nodemon ./bin/www",
+    "watch:server": "nodemon --debug --ignore client/ --ignore public/ ./bin/www",
     "watch:client": "npm --prefix client start"
   },
   "repository": {
@@ -28,6 +28,7 @@
   "homepage": "https://github.com/Sketch-Chest/chest-registry#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "connect-ensure-login": "^0.1.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "express-session": "^1.14.0",
@@ -47,6 +48,7 @@
     "xo": "^0.16.0"
   },
   "xo": {
+    "semicolon": false,
     "envs": [
       "browser"
     ]

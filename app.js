@@ -1,104 +1,148 @@
-const path = require('path');
-const express = require('express');
-const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const mongoose = require('mongoose');
-const passport = require('passport');
+const path = require('path')
+const express = require('express')
+const logger = require('morgan')
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
+const session = require('express-session')
+const passport = require('passport')
+const GitHubStrategy = require('passport-github').Strategy
+const mongoose = require('mongoose')
 
 if (process.env.NODE_ENV !== 'production') {
-	require('dotenv').config();
+	require('dotenv').config()
 }
 
+mongoose.connect('mongodb://localhost/chest-registry')
+
 // model
-const User = require('./models/user');
+const User = require('./app/models/user')
 
 // route
-const routes = require('./routes/index');
-const users = require('./routes/user');
+const users = require('./app/routes/user')
 
-const app = express();
+const app = express()
 
-app.use(logger('dev'));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(logger('dev'))
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(cookieParser())
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 
 // session
 app.use(session({
 	secret: 'keyboard cat',
 	resave: true,
 	saveUninitialized: true
-}));
+}))
 
 // authentication
-app.use(passport.initialize());
-app.use(passport.session());
-
-const LocalStrategy = require('passport-local').Strategy;
-
-passport.use(new LocalStrategy(
-	(username, password, done) => {
-		User.findOne({username}, (err, user) => {
-			if (err) {
-				return done(err);
-			}
-			if (!user) {
-				return done(null, false, {message: 'Incorrect username.'});
-			}
-			if (!user.validPassword(password)) {
-				return done(null, false, {message: 'Incorrect password.'});
-			}
-			return done(null, user);
-		});
-	}
-));
-
-var GitHubStrategy = require('passport-github').Strategy;
+app.use(passport.initialize())
+app.use(passport.session())
 
 passport.use(new GitHubStrategy({
-    clientID: process.env.GITHUB_CLIENT_ID,
-    clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: `http://127.0.0.1:${process.env.PORT}/auth/github/callback`
-  },
-  (accessToken, refreshToken, profile, done) => {
-    User.findOrCreate({githubId: profile.id}, (err, user) => {
-      return done(err, user);
-    });
-  }
-));
+	clientID: process.env.GITHUB_CLIENT_ID,
+	clientSecret: process.env.GITHUB_CLIENT_SECRET,
+	callbackURL: `http://localhost:3000/auth/github/callback`
+},
+(accessToken, refreshToken, profile, done) => {
+	// User.findOrCreate({githubId: profile.id}, (err, user) => {
+	// 	return done(err, user)
+	// })
+	User.findOne({githubID: profile.id}, (err, user) => {
+		if (err) {
+			console.log(err)
+			return done(err)
+		}
+		if (!err && user !== null) {
+			return done(null, user)
+		}
+		user = new User({
+			githubID: profile.id,
+			name: profile.displayName,
+			created: Date.now()
+		})
+		user.save(err => {
+			if (err) {
+				console.log(err)  // handle errors!
+			} else {
+				console.log('saving user ...')
+				done(null, user)
+			}
+		})
+	})
+}))
+
+// In order to restore authentication state across HTTP requests, Passport needs
+// to serialize users into and deserialize users out of the session.  In a
+// production-quality application, this would typically be as simple as
+// supplying the user ID when serializing, and querying the user record by ID
+// from the database when deserializing.  However, due to the fact that this
+// example does not have a database, the complete Twitter profile is serialized
+// and deserialized.
+passport.serializeUser((user, done) => {
+	done(null, user)
+})
+
+passport.deserializeUser((obj, done) => {
+	done(null, obj)
+})
 
 // route
-app.use('/', routes);
-app.use('/users', users);
+app.use('/users', users)
+app.get('/logout', (req, res) => {
+	req.logout()
+	res.redirect('/')
+})
+app.get('/auth/github',
+	passport.authenticate('github'))
+
+app.get('/auth/github/callback',
+	passport.authenticate('github', {failureRedirect: '/login'}),
+	(req, res) => {
+		// Successful authentication, redirect home.
+		console.log(req.user)
+		res.json({success: true})
+	})
+
+app.get('/profile',
+	ensureAuthenticated,
+	(req, res) => {
+		res.render('profile', {user: req.user})
+	})
 
 // handle 404
 app.use((req, res, next) => {
-	const err = new Error('Not Found');
-	err.status = 404;
-	next(err);
-});
+	const err = new Error('Not Found')
+	err.status = 404
+	next(err)
+})
 
 // for development
 if (app.get('env') === 'development') {
 	app.use((err, req, res) => {
-		res.status(err.status || 500);
-		res.render('error', {
+		res.status(err.status || 500)
+		res.json({
 			message: err.message,
 			error: err
-		});
-	});
+		})
+	})
 }
 
 // for production
 app.use((err, req, res) => {
-	res.status(err.status || 500);
-	res.render('error', {
+	res.status(err.status || 500)
+	res.json({
 		message: err.message,
 		error: {}
-	});
-});
+	})
+})
 
-module.exports = app;
+// test authentication
+function ensureAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) {
+		return next()
+	}
+	res.redirect('/')
+}
+
+module.exports = app
