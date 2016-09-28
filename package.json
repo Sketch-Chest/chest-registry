@@ -36,7 +36,9 @@
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-github": "^1.1.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "react": "^15.3.2",
+    "react-router": "^2.8.1"
   },
   "devDependencies": {
     "ava": "^0.16.0",

@@ -108,32 +108,17 @@ app.get('/profile',
 	ensureAuthenticated,
 	(req, res) => {
 		res.render('profile', {user: req.user})
-	})
+	}
+)
 
-// handle 404
+const React = require('react')
+const Router = require('react-router')
+
 app.use((req, res, next) => {
-	const err = new Error('Not Found')
-	err.status = 404
-	next(err)
-})
-
-// for development
-if (app.get('env') === 'development') {
-	app.use((err, req, res) => {
-		res.status(err.status || 500)
-		res.json({
-			message: err.message,
-			error: err
-		})
-	})
-}
-
-// for production
-app.use((err, req, res) => {
-	res.status(err.status || 500)
-	res.json({
-		message: err.message,
-		error: {}
+	const router = Router.create({location: req.url, routes: routes})
+	router.run((Handler, state) => {
+		const html = React.renderToString(React.createElement(Handler))
+		return res.render('react_page', {html: html})
 	})
 })
 
