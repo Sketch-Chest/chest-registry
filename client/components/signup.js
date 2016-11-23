@@ -1,4 +1,4 @@
-import React from 'react'
+const React = require('react')
 
 export default class Signup extends React.Component {
 	handleOnSubmit(event) {

@@ -1,12 +1,12 @@
 // import 'babel-polyfill'
 // import './stylus/index.styl'
 
-import React from 'react'
-import {render} from 'react-dom'
-import {Router, Route, browserHistory} from 'react-router'
+const React = require('react')
+const {render} = require('react-dom')
+const {Router, Route, browserHistory} = require('react-router')
 
-import App from './components/app'
-import Signup from './components/signup'
+const App = require('./components/app')
+const Signup = require('./components/signup')
 
 render((
 	<Router history={browserHistory}>

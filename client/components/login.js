@@ -1,4 +1,4 @@
-import React from 'react'
+const React = require('react')
 
 export default class Login extends React.Component {
 	render() {
