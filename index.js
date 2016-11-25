@@ -122,7 +122,7 @@ app.use((req, res, next) => {
 	})
 })
 
-// test authentication
+// helper: test authentication
 function ensureAuthenticated(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next()

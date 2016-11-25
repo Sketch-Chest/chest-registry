@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Chest registry service.",
   "private": true,
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "postinstall": "npm --prefix client install",
     "start": "node ./bin/www",
