@@ -1,0 +1,7 @@
+chest:
+  build: .
+  ports:
+    - '3000:3000'
+  volumes:
+    - .:/home/app/chest
+    - /home/app/chest/node_modules
