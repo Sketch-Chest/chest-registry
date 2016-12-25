@@ -1,16 +1,13 @@
-FROM node:7.2.0
+FROM node:argon
 
-RUN useradd --user-group --create-home --shell /bin/false app &&\
-  npm install --global npm@latest
+# create app directory
+WORKDIR /app
 
-ENV HOME=/home/app
-
-#COPY package.json npm-shrinkwrap.json $HOME/chest/
-COPY package.json $HOME/chest/
-RUN chown -R app:app $HOME/*
-
-USER app
-WORKDIR $HOME/chest
+# install deps (for caching)
+COPY package.json client/package.json /app/
 RUN npm install
 
-CMD ["node", "index.js"]
+# copy entire source code
+COPY . /app
+
+CMD ["npm", "start"]

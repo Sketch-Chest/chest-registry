@@ -1,7 +1,13 @@
-chest:
-  build: .
-  ports:
-    - '3000:3000'
-  volumes:
-    - .:/home/app/chest
-    - /home/app/chest/node_modules
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app
+      - /app/node_modules
+    links:
+      - mongo
+  mongo:
+    image: mongo
