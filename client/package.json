@@ -2,6 +2,11 @@
   "name": "chest-registry-client",
   "private": true,
   "main": "index.jsx",
+  "scripts": {
+    "postinstall": "webpack --progress --optimize-minimize",
+    "test": "xo",
+    "start": "webpack -w"
+  },
   "dependencies": {
     "babel-loader": "^6.2.5",
     "babel-polyfill": "^6.13.0",
@@ -22,11 +27,6 @@
     "eslint-config-xo-react": "^0.10.0",
     "eslint-plugin-react": "^6.3.0",
     "xo": "^0.17.1"
-  },
-  "scripts": {
-    "postinstall": "webpack --progress",
-    "test": "xo",
-    "start": "webpack -w"
   },
   "author": "Yasuaki Uechi <uetchy@randompaper.co> (https://randompaper.co/)",
   "license": "MIT",
