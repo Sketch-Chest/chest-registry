@@ -9,7 +9,7 @@
     "start": "node ./bin/www",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "test": "run-p test:*",
-    "test:server": "nyc ava && xo",
+    "test:server": "nyc ava && standard",
     "test:client": "npm --prefix client test",
     "watch": "run-p watch:*",
     "watch:server": "nodemon --debug --ignore client/ --ignore public/ ./bin/www",
@@ -38,20 +38,30 @@
     "passport-github": "^1.1.0",
     "passport-local": "^1.0.0",
     "react": "^15.3.2",
-    "react-router": "^3.0.0"
+    "react-router": "^3.0.0",
+    "passport-local-mongoose": "^4.0.0"
   },
   "devDependencies": {
     "ava": "^0.17.0",
+    "babel-eslint": "^7.1.1",
+    "babel-register": "^6.18.0",
     "coveralls": "^2.11.14",
-    "dotenv": "^2.0.0",
+    "dotenv": "^4.0.0",
+    "eslint-plugin-flowtype": "^2.29.2",
     "nodemon": "^1.10.2",
-    "npm-run-all": "^3.1.0",
+    "npm-run-all": "^4.0.0",
     "nyc": "^10.0.0",
-    "xo": "^0.17.0"
+    "should": "^11.1.2",
+    "standard": "^8.6.0"
   },
-  "xo": {
-    "spaces": true,
-    "semicolon": false,
+  "standard": {
+    "parser": "babel-eslint",
+    "plugins": [
+      "flowtype"
+    ],
+    "ignore": [
+      "/client/"
+    ],
     "envs": [
       "browser"
     ]

@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 
+const logger = require('morgan')
 const app = require('..')
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+  app.use(logger('dev'))
+}
 
 app.set('port', process.env.PORT || 3000)
 
