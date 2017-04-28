@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const logger = require('morgan')
-const app = require('..')
+import logger from 'morgan'
+import app from '..'
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -11,5 +11,5 @@ if (process.env.NODE_ENV !== 'production') {
 app.set('port', process.env.PORT || 3000)
 
 const server = app.listen(app.get('port'), () => {
-	console.log('Express server listening on port ' + server.address().port)
+  console.log('Express server listening on port ' + server.address().port)
 })

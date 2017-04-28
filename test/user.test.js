@@ -1,6 +1,6 @@
-const should = require('should')
-const mongoose = require('mongoose')
-const User = require('../models/user')
+import should from 'should'
+import mongoose from 'mongoose'
+import User from '../models/user'
 var db
 
 describe('User', () => {
@@ -30,7 +30,7 @@ describe('User', () => {
     })
   })
 
-  it('find a user by username', function (done) {
+  it('find a user by username', (done) => {
     User.findOne({ username: '12345' }, (err, account) => {
       account.username.should.eql('12345')
       console.log('   username: ', account.username)

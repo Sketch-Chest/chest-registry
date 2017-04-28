@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const passportLocalMongoose = require('passport-local-mongoose')
+import mongoose from 'mongoose'
+import passportLocalMongoose from 'passport-local-mongoose'
 
 const User = new mongoose.Schema({
   username: String,
@@ -9,4 +9,4 @@ const User = new mongoose.Schema({
 
 User.plugin(passportLocalMongoose)
 
-module.exports = mongoose.model('User', User)
+export default mongoose.model('User', User)

@@ -1,19 +1,19 @@
-const path = require('path')
-const express = require('express')
-const cookieParser = require('cookie-parser')
-const bodyParser = require('body-parser')
-const session = require('express-session')
-const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
-const GitHubStrategy = require('passport-github').Strategy
-const mongoose = require('mongoose')
+import path from 'path'
+import express from 'express'
+import cookieParser from 'cookie-parser'
+import bodyParser from 'body-parser'
+import session from 'express-session'
+import passport from 'passport'
+import { Strategy as LocalStrategy } from 'passport-local'
+import { Strategy as GitHubStrategy } from 'passport-github'
+import mongoose from 'mongoose'
 
 // models
-const User = require('./models/user')
+import User from './models/user'
 
 // routes
-const routes = require('./routes')
-const users = require('./routes/user')
+import routes from './routes'
+import users from './routes/user'
 
 const app = express()
 
@@ -21,16 +21,18 @@ const app = express()
 app.use(express.static(path.join(__dirname, 'public')))
 
 // parse requests
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cookieParser())
 
 // session: setup
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false
-}))
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+  })
+)
 
 // auth: setup
 app.use(passport.initialize())
@@ -76,7 +78,9 @@ passport.deserializeUser(User.deserializeUser())
 // }))
 
 // mongoose connect
-mongoose.connect('mongodb://localhost/chest-registry')
+const MONGODB_URL =
+  process.env.MONGODB_URL || 'mongodb://localhost/chest-registry'
+mongoose.connect(MONGODB_URL)
 
 // routes
 app.use('/', routes)
@@ -88,31 +92,19 @@ app.use('/users', users)
 //   }
 // )
 
-// server-side rendering
-// const React = require('react')
-// const Router = require('react-router')
-
-// app.use((req, res, next) => {
-//   const router = Router.create({location: req.url, routes: routes})
-//   router.run((Handler, state) => {
-//     const html = React.renderToString(React.createElement(Handler))
-//     return res.render('react_page', {html: html})
-//   })
-// })
-
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   const err = new Error('Not Found')
   err.status = 404
   next(err)
 })
 
 // helper: check auth status
-function ensureAuthenticated (req, res, next) {
+function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next()
   }
   res.redirect('/')
 }
 
-module.exports = app
+export default app
