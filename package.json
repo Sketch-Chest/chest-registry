@@ -8,7 +8,7 @@
     "postinstall": "cd client; yarn install",
     "start": "babel-node ./bin/www",
     "watch": "run-p watch:*",
-    "watch:server": "nodemon --exec babel-node --debug --ignore client/ --ignore public/ ./bin/www",
+    "watch:server": "nodemon --exec babel-node --inspect --ignore client/ --ignore public/ ./bin/www",
     "watch:client": "cd client; yarn start",
     "test": "run-p test:*",
     "test:server": "nyc ava && standard",

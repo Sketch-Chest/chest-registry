@@ -1,21 +1,21 @@
 module.exports = {
-	entry: '.',
+	entry: ['.', 'babel-polyfill'],
 	output: {
 		filename: '../public/bundle.js'
 	},
 	module: {
 		loaders: [{
 			test: /\.jsx?$/,
-			loader: 'babel',
+			loader: 'babel-loader',
 			exclude: /node_modules/
 		},
 		{
 			test: /\.styl$/,
-			loader: 'style!css!stylus'
+			loader: 'style-loader!css-loader!stylus-loader'
 		}]
 	},
 	resolve: {
-		extensions: ['', '.js', '.jsx', '.styl']
+		extensions: ['.js', '.jsx', '.styl']
 	},
 	devtool: 'source-map'
 }

@@ -1,18 +1,20 @@
-// import 'babel-polyfill'
-// import './stylus/index.styl'
+import './stylus/index.styl'
 
-const React = require('react')
-const { render } = require('react-dom')
-const { Router, Route, browserHistory } = require('react-router')
+import React from 'react'
+import { render } from 'react-dom'
+import { BrowserRouter, Route} from 'react-router-dom'
 
-const App = require('./components/app')
-const Signup = require('./components/signup')
+import App from './components/app'
+import Login from './components/login'
+import Signup from './components/signup'
 
 render(
-  <Router history={browserHistory}>
-    <Route path="/" component={App}>
+  <BrowserRouter>
+    <div>
+      <Route exact path="/" component={App} />
+      <Route path="login" component={Login} />
       <Route path="signup" component={Signup} />
-    </Route>
-  </Router>,
+    </div>
+  </BrowserRouter>,
   document.getElementById('root')
 )

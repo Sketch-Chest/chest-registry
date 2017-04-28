@@ -13,12 +13,12 @@ import User from './models/user'
 
 // routes
 import routes from './routes'
-import users from './routes/user'
+import usersRoutes from './routes/user'
 
 const app = express()
 
 // serve static files
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.resolve(__dirname, 'public')))
 
 // parse requests
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -28,7 +28,7 @@ app.use(cookieParser())
 // session: setup
 app.use(
   session({
-    secret: 'keyboard cat',
+    secret: process.env.SECRET || 'keyboard cat',
     resave: false,
     saveUninitialized: false
   })
@@ -78,13 +78,13 @@ passport.deserializeUser(User.deserializeUser())
 // }))
 
 // mongoose connect
-const MONGODB_URL =
+mongoose.connect(
   process.env.MONGODB_URL || 'mongodb://localhost/chest-registry'
-mongoose.connect(MONGODB_URL)
+)
 
 // routes
 app.use('/', routes)
-app.use('/users', users)
+app.use('/users', usersRoutes)
 // app.get('/profile',
 //   ensureAuthenticated,
 //   (req, res) => {
