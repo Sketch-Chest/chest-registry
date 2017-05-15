@@ -4,10 +4,6 @@ import User from '../models/user'
 
 const router = Router()
 
-router.get('/', (req, res) => {
-  res.render('index', { user: req.user })
-})
-
 router.get('/register', (req, res) => {
   User.register(
     new User({ username: req.body.username }),

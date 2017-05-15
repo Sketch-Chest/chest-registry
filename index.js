@@ -43,46 +43,15 @@ passport.use(new LocalStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
-// auth: github
-// passport.use(new GitHubStrategy({
-//   clientID: process.env.GITHUB_CLIENT_ID,
-//   clientSecret: process.env.GITHUB_CLIENT_SECRET,
-//   callbackURL: `http://localhost:3000/auth/github/callback`
-// },
-// (accessToken, refreshToken, profile, done) => {
-//   // User.findOrCreate({githubId: profile.id}, (err, user) => {
-//   //  return done(err, user)
-//   // })
-//   User.findOne({githubID: profile.id}, (err, user) => {
-//     if (err) {
-//       console.log(err)
-//       return done(err)
-//     }
-//     if (!err && user !== null) {
-//       return done(null, user)
-//     }
-//     user = new User({
-//       githubID: profile.id,
-//       name: profile.displayName,
-//       created: Date.now()
-//     })
-//     user.save(err => {
-//       if (err) {
-//         console.log(err)  // handle errors!
-//       } else {
-//         console.log('saving user ...')
-//         done(null, user)
-//       }
-//     })
-//   })
-// }))
-
 // mongoose connect
 mongoose.connect(
   process.env.MONGODB_URL || 'mongodb://localhost/chest-registry'
 )
 
-// routes
+// API routes
+app.get('*', (req, res) => {
+  res.render('index')
+})
 app.use('/', routes)
 app.use('/users', usersRoutes)
 // app.get('/profile',
