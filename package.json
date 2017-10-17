@@ -5,14 +5,14 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "postinstall": "cd client; yarn install",
+    "postinstall": "cd client; npm install",
     "start": "babel-node ./bin/www",
     "watch": "run-p watch:*",
     "watch:server": "nodemon --exec babel-node --inspect --ignore client/ --ignore public/ ./bin/www",
-    "watch:client": "cd client; yarn start",
+    "watch:client": "cd client; npm start",
     "test": "run-p test:*",
     "test:server": "nyc ava && standard",
-    "test:client": "cd client; yarn test",
+    "test:client": "cd client; npm test",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "babel": {
@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/Sketch-Chest/chest-registry#readme",
   "dependencies": {
+    "auth0-js": "^8.10.1",
     "body-parser": "^1.17.1",
     "connect-ensure-login": "^0.1.1",
     "cookie-parser": "^1.4.3",

@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 export default class Signup extends React.Component {
   handleOnSubmit(event) {
-    event.preventDefault()
-    console.log(event)
+    event.preventDefault();
+    console.log(event);
   }
 
   render() {
@@ -13,6 +13,6 @@ export default class Signup extends React.Component {
         <input type="password" />
         <button type="submit">Signup</button>
       </form>
-    )
+    );
   }
 }
