@@ -1,6 +1,7 @@
-import { Router } from 'express';
-import passport from 'passport';
-import User from '../models/user';
+const express = require('express');
+const Router = express.Router;
+const passport = require('passport');
+const User = require('../models/user');
 
 const router = Router();
 
@@ -67,4 +68,4 @@ router.get(
   }
 );
 
-export default router;
+module.exports = router;

@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class Signup extends React.Component {
+export default class Signup extends Component {
   handleOnSubmit(event) {
     event.preventDefault();
     console.log(event);
