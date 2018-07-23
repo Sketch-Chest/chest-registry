@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
-import Root from './components/root';
-import Login from './components/login';
-import Signup from './components/signup';
-import { PrivateRoute, AuthButton } from './components/auth';
+import React, { Component } from 'react'
+import { BrowserRouter, Route, Link } from 'react-router-dom'
+import Root from './components/root'
+import Login from './components/login'
+import Signup from './components/signup'
+import { PrivateRoute, AuthButton } from './components/auth'
 
-const Public = () => <div>Public</div>;
-const Protected = () => <div>Protected</div>;
+const Public = () => <div>Public</div>
+const Protected = () => <div>Protected</div>
 
 export default class App extends Component {
   render() {
@@ -29,6 +29,6 @@ export default class App extends Component {
           <PrivateRoute path="/protected" component={Protected} />
         </div>
       </BrowserRouter>
-    );
+    )
   }
 }

@@ -1,17 +1,17 @@
-import React from 'react';
-import { Route, Redirect, withRouter } from 'react-router-dom';
+import React from 'react'
+import { Route, Redirect, withRouter } from 'react-router-dom'
 
 export const fakeAuth = {
   isAuthenticated: false,
   authenticate(cb) {
-    this.isAuthenticated = true;
-    setTimeout(cb, 100);
+    this.isAuthenticated = true
+    setTimeout(cb, 100)
   },
   signout(cb) {
-    this.isAuthenticated = false;
-    setTimeout(cb, 100);
+    this.isAuthenticated = false
+    setTimeout(cb, 100)
   },
-};
+}
 
 export const AuthButton = withRouter(
   ({ history }) =>
@@ -25,7 +25,7 @@ export const AuthButton = withRouter(
     ) : (
       <p>You are not logged in.</p>
     )
-);
+)
 
 export const PrivateRoute = ({ component: Component, ...args }) => (
   <Route
@@ -40,6 +40,7 @@ export const PrivateRoute = ({ component: Component, ...args }) => (
             state: { from: props.location },
           }}
         />
-      )}
+      )
+    }
   />
-);
+)

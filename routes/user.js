@@ -1,15 +1,15 @@
-const express = require('express');
-const Router = express.Router;
+const express = require('express')
+const Router = express.Router
 
-const router = new Router();
+const router = new Router()
 
 /* GET users listing. */
 router.get('/', (req, res) => {
-  res.send('respond with a resource');
-});
+  res.send('respond with a resource')
+})
 
 router.post('/', (req, res) => {
-  res.json({});
-});
+  res.json({})
+})
 
-module.exports = router;
+module.exports = router
